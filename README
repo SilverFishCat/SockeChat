@@ -1,8 +1,6 @@
-SOCKEchat V1.2
-==============
+#SOCKEchat V1.2
 
-Unencrypted socket based chat
------------------------------
+##Unencrypted socket based chat
 
 Dependencies: make (`mingw32_make.exe`) and g++, only on windows.
 
