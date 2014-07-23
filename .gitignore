@@ -1,0 +1,7 @@
+# Compiled objects and binaries
+/bin/*
+/obj/*
+
+# Notepadd++ session file
+nppsession
+
