@@ -23,7 +23,7 @@ Socket::Socket(const char* port) throw(SocketException){
 	setMyAddress();
 	
 	id_ = socket(myaddr_->ai_family, myaddr_->ai_socktype, 0);
-	if(id_ == -1){
+	if(id_ == INVALID_SOCKET){
 		std::stringstream ss;
 		ss << "Error creating socket: " << WSAGetLastError();
 		throw SocketException(this, ss.str());
@@ -82,10 +82,10 @@ addrinfo Socket::getTheirAddr(char* addr, const char* port){
 	addrinfo* newaddr;
 	setHints();
 	int status = getaddrinfo(addr, port, &hints_, &newaddr);
-	if(status < 0){
-		//std::stringstream ss;
-		//ss << "Error accepting connection: " << WSAGetLastError();
-		throw SocketException(NULL, "Error getting addr info: " /*+ gai_strerror(status)*/);
+	if(status != 0){
+		std::stringstream ss;
+		ss << "Error getting addr info: " << gai_strerror(status);
+		throw SocketException(NULL, ss.str());
 	}
 	return *newaddr;
 }
@@ -98,11 +98,11 @@ void Socket::setHints(){
 }
 void Socket::setMyAddress() throw(SocketException){
 	setHints();
-	int status = getaddrinfo("", port_, &hints_, &myaddr_);
-	if(status < 0){
-		//std::stringstream ss;
-		//ss << "Error accepting connection: " << WSAGetLastError();
-		throw SocketException(NULL, "Error getting addr info: " /*+ gai_strerror(status)*/);
+	int status = getaddrinfo("127.0.0.1", port_, &hints_, &myaddr_);
+	if(status != 0){
+		std::stringstream ss;
+		ss << "Error getting addr info: " << gai_strerror(status);
+		throw SocketException(NULL, ss.str());
 	}
 }
 void Socket::setUpWSA(){

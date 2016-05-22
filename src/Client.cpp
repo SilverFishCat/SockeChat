@@ -23,8 +23,8 @@ int main(int argc, char** args){
 		exit(1);
 	}
 	
-	Socket *s;
-	Thread *t;
+	Socket *s = NULL;
+	Thread *t = NULL;
 	try{
 		s = new Socket(PORT);
 		std::cout << "created socket" << s->getID() << std::endl;

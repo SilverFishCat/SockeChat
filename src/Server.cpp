@@ -62,7 +62,7 @@ class HandleClientConnection : public RemoteClientThread{
 			std::stringstream connectionNotice;
 			connectionNotice << "Client " << getRemoteClient()->getSocket()->getID() << " has connected" << std::endl;
 			serv_->broadcastMessage(connectionNotice.str().c_str());
-			std::cout << "sending motd to socket" << getRemoteClient()->getSocket()->getID() << std::endl;
+			std::cout << "sending motd to socket " << getRemoteClient()->getSocket()->getID() << std::endl;
 			/*int sentbytes = */ getRemoteClient()->getSocket()->sendSocket(Server::MOTD.c_str());
 		}
 		class Factory : public RemoteClientThread::Factory{
@@ -169,7 +169,7 @@ void Server::closeCommunications() throw(ServerException){
 		thread->terminate();
 		delete(thread);
 	}
-	std::cout << "connection manager sopping" << std::endl;
+	std::cout << "connection manager stopping" << std::endl;
 	connectionCreator_->terminate();
 }
 void Server::stop(){
@@ -221,7 +221,7 @@ std::list<std::string> Server::getClientNames(){
 	
 	return result;
 }
-RemoteClient*  Server::getClientByName(std::string name){
+RemoteClient* Server::getClientByName(std::string name){
 	RemoteClient* result = NULL;
 	
 	for(threadList::iterator it = clientThreads_.begin();
@@ -257,11 +257,6 @@ void Server::handleServerCommand(const char* msg){
 	handleCommand(msg,source);
 	delete(source);
 }
-const std::string SRV_EXIT_CMD = "close";
-const std::string SRV_BROADCAST = "shout";
-const std::string SRV_NAME_CHANGE_CMD = "nick";
-const std::string SRV_CLIENT_LIST_CMD = "list";
-const std::string SRV_WHISPER_CMD = "whisper";
 void Server::handleCommand(const char* rawCommand, CommandSource* source){
 	std::string cmd, *args = new std::string;
 	Command::split(rawCommand, &cmd, &args, ' ');
@@ -287,7 +282,7 @@ void Server::handleCommand(const char* rawCommand, CommandSource* source){
 	delete(args);
 }
 
-int main(){
+int main(int argc, char** args){
 	Server* server = new Server("3940");
 	try{
 		server->addCommand(new ExitCommand());

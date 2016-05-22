@@ -1,7 +1,9 @@
 #ifndef __SOCKET_HPP
 #define __SOCKET_HPP
 
+#ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x501 // a hack to make windows less bad
+#endif
 
 #include <exception>
 #include <string>
