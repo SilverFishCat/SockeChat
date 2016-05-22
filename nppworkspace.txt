@@ -1,0 +1,33 @@
+<NotepadPlus>
+    <Project name="SockeChat">
+        <File name="src\Client.cpp" />
+        <File name="src\Command.cpp" />
+        <File name="src\Command.hpp" />
+        <File name="src\commands.cpp" />
+        <File name="src\commands.hpp" />
+        <File name="src\CommandSource.cpp" />
+        <File name="src\CommandSource.hpp" />
+        <File name="src\ConnectionCreator.cpp" />
+        <File name="src\ConnectionCreator.hpp" />
+        <File name="src\ListeningSocket.cpp" />
+        <File name="src\ListeningSocket.hpp" />
+        <File name="src\MessageReceiver.cpp" />
+        <File name="src\MessageReceiver.hpp" />
+        <File name="src\MessageReceivingThread.cpp" />
+        <File name="src\MessageReceivingThread.hpp" />
+        <File name="src\RemoteClient.cpp" />
+        <File name="src\RemoteClient.hpp" />
+        <File name="src\RemoteClientThread.cpp" />
+        <File name="src\RemoteClientThread.hpp" />
+        <File name="src\Server.cpp" />
+        <File name="src\Server.hpp" />
+        <File name="src\Socket.cpp" />
+        <File name="src\Socket.hpp" />
+        <File name="src\Thread.cpp" />
+        <File name="src\Thread.hpp" />
+        <Folder name="Client" />
+        <File name=".gitignore" />
+        <File name="makefile" />
+        <File name="README.md" />
+    </Project>
+</NotepadPlus>
